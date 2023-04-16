@@ -8,8 +8,8 @@
 - Horario 1: LUN de 10 a 13 Horas (Teoria)
 - Horario 2: MAR de 14 a 17 Horas (Practica)
 - Inicio: 27.MAR.2023
-- Delegado: 
-- Subdelegado 1: 
+- Delegado: Gustavo Alonso Morales Coronel
+- Subdelegado 1: Darlene Alexandra Ríos Cadillo
 - Subdelegado 2: 
 
 
