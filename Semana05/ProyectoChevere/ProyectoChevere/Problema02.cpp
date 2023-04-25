@@ -18,7 +18,7 @@ double suma_secuencia(int N) {
 	return suma;
 }
 
-int main() {
+int main2() {
 	//configuracion
 	setlocale(LC_ALL, "");
 	//declaración de variables
