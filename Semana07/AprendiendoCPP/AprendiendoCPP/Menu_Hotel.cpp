@@ -58,13 +58,23 @@ pair < pair<int, int>, pair<int, string>> lecturaDatos() {
 	cout << "LECTURA DE DATOS\n";
 	cout << "============================\n";
 	(datos.second).second = validacionSexo();
-	cout << "Edad en años: "; cin >> (datos.second).first;
+	do {
+		cout << "Edad en años: "; cin >> (datos.second).first;
+		if ((datos.second).first < 1) {
+			cout << "Ingrese una edad real, por favor intente de nuevo\n";
+		}
+	} while ((datos.second).first < 1);
 	cout << "Tipo de Hospedaje:\n";
 	cout << "  1.- Imperial\n";
 	cout << "  2.- VIP\n";
 	cout << "  3.- Gold\n";
 	(datos.first).first = leerOpcion();
-	cout << "Cantidad de dias: "; cin >> (datos.first).second;
+	do {
+		cout << "Cantidad de dias: "; cin >> (datos.first).second;
+		if ((datos.first).second < 1) {
+			cout << "Ingrese un nùmero de dìas real, por favor intente de nuevo\n";
+		}
+	} while ((datos.first).second < 1);
 	// Retornar
 	return datos;
 }

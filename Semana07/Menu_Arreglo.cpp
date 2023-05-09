@@ -72,7 +72,10 @@ void generarArreglos() {
 // Mostrar Arreglos
 void mostrarArreglos() {
 	// Validacion
-	if (arreglo1 == NULL) return;
+	if (arreglo1 == NULL) {
+		cout << "Debe generar los elementos\n";
+		return;
+	}
 	// Limpiar pantalla
 	system("cls");
 	// Presentacion
@@ -93,44 +96,73 @@ void mostrarArreglos() {
 	cout << "\n";
 }
 
+// Procedimiento arregar
+void agregar(int* arreglo, int numero) {
+	for (int i = 0; i < tamanio; i++) {
+		if (arreglo[i] == numero) break;
+		if (arreglo[i] == -1) {
+			arreglo[i] = numero;
+			break;
+		}
+	}
+}
+
 // Mostrar Elementos Comunes
 void mostrarElementosC() {
 	// Validacion
-	if (arreglo1 == NULL) return;
-	// Limpiar pantalla
+	if (arreglo1 == NULL) {
+		cout << "Debe generar los elementos\n";
+		return;
+	}
+	// Variable
+	bool hayComunes;
+	int contador;
+	int* arregloComun = NULL;
+	arregloComun = new int[tamanio];
+	int numero;
+	// Proceso
+	for (int i = 0; i < tamanio; i++) {
+		arregloComun[i] = -1;
+	}
+	hayComunes = false;
+	for (int i = 0; i < tamanio; i++) {
+		contador = 0;
+		numero = arreglo1[i];
+		for (int j = 0; j < tamanio; j++) {
+			contador += (numero == arreglo2[j]) ? 1 : 0;
+		}
+		if (contador > 0) {
+			agregar(arregloComun, numero);
+			hayComunes = true;
+		}
+	}
+	// Reporte
 	system("cls");
-	// Presentacion
 	cout << "--------------------------------\n";
 	cout << "MOSTRAR ELEMENTOS COMUNES\n";
 	cout << "--------------------------------\n";
-	// Variable
-	int c;
-	// Proceso
 	mostrarArreglos();
-	c = 0;
-	for (int i = 0; i < tamanio; i++) {
-		if (arreglo1[i] == arreglo2[i]) {
-			c++;
-		}
-	}
-	if (c > 0) {
-		cout << "Los elementos comunes son: ";
+	if (hayComunes) {
+		cout << "Elementos comunes: ";
 		for (int i = 0; i < tamanio; i++) {
-			if (arreglo1[i] == arreglo2[i]) {
-				cout << arreglo1[i] << " ";
-			}
+			if (arregloComun[i] == -1) break;
+			cout << arregloComun[i] << " ";
 		}
 		cout << "\n";
 	}
 	else {
 		cout << "No hay elements comunes\n";
 	}
+	delete[] arregloComun;
 }
 
 // Mostrar Arreglo suma
 void mostrarArregloSuma() {
 	// Validacion
-	if (arreglo1 == NULL) return;
+	if (arreglo1 == NULL) {
+		cout << "Debe generar los elementos\n";
+		return;
+	}
 	// Limpiar pantalla
 	system("cls");
 	// Presentacion
@@ -144,6 +176,7 @@ void mostrarArregloSuma() {
 	}
 	// Mostrando el arreglo suma
 	cout << "El arreglo suma es: ";
+	mostrarArreglos();
 	for (int i = 0; i < tamanio; i++) {
 		cout << arreglosuma[i] << " ";
 	}
@@ -169,7 +202,7 @@ int main() {
 	// Variables del programa
 	int op;
 	// Inicializar Variables
-	
+
 	// Control del Menú
 	do {
 		menuPrincipal();
