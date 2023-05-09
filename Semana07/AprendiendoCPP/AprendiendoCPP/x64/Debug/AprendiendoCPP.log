@@ -1,6 +1,5 @@
-﻿  Menu_Hotel.cpp
-C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Hotel.cpp(76,28): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Hotel.cpp(80,28): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Hotel.cpp(95,28): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Hotel.cpp(100,28): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+﻿  Menu_Matematico.cpp
+C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Matematico.cpp(63,22): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Matematico.cpp(68,22): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\AprendiendoCPP\Menu_Matematico.cpp(203,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
   AprendiendoCPP.vcxproj -> C:\GustavoCoronel\UNI-FIM-20231-MB545-D\Semana07\AprendiendoCPP\x64\Debug\AprendiendoCPP.exe

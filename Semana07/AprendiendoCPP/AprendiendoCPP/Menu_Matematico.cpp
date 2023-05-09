@@ -1,239 +1,188 @@
 #include <iostream>
 #include <time.h>
-#include <sstream>
 using namespace std;
 
-// Menu Principal
+// Variables Globales
+int* arreglo1 = NULL;
+int* arreglo2 = NULL;
+int* arreglosuma = NULL;
+int tamanio;
+
+// Menu
 void menuPrincipal() {
-	// Limpiando pantalla
+	// Limpiar pantalla
 	system("cls");
-	// Menu
-	cout << "===============================\n";
-	cout << "          MATEMATICA\n";
-	cout << "       Menu de Opciones\n";
-	cout << "===============================\n";
-	cout << "    1. Aproximacion de e^x\n";
-	cout << "    2. Divisor\n";
-	cout << "    3. Raíces de una ecuación\n";
-	cout << "    4. Suma de dígitos\n";
+	cout << "========================================\n";
+	cout << "    TRABAJANDO CON ARREGLOS\n";
+	cout << "    Menú de Opciones\n";
+	cout << "========================================\n";
+	cout << "    1. Generar arreglos\n";
+	cout << "    2. Mostrar arreglos\n";
+	cout << "    3. Mostrar elementos comunes\n";
+	cout << "    4. Mostrar el arreglo suma\n";
 	cout << "    5. Salir\n";
-}
-
-// Factorial
-int factorial(int n) {
-	// Variable
-	int fact;
-	// Inicializacion de variable
-	fact = 1;
-	// Validacion neutra
-	if (n == 0) return fact;
-	// Proceso
-	for (int i = 1; i <= n; i++) {
-		fact *= i;
-	}
-	// Retorno
-	return fact;
-}
-// Potencia de un numero
-int potencia(int x, int y) {
-	// variable
-	int resultado;
-	// Inicializacion de variable
-	resultado = 1;
-	// Validacion neutra
-	if (y == 0) return resultado;
-	// Proceso
-	for (int i = 1; i <= y; i++) {
-		resultado *= x;
-	}
-	// Retorno
-	return resultado;
-}
-
-// Suma de cifras
-int sumaCifras(int numero) {
-	// Variable
-	int sumac, a;
-	// Inicialización de Variable
-	sumac = 0; a = numero;
-	// Proceso
-	while (1) {
-		sumac += (a % 10);
-		a = a / 10;
-		if (a < 1) break;
-	}
-	// Retorno
-	return sumac;
-}
-
-// Numero primo
-bool numeroPrimo(int numero) {
-	// Variable
-	int contador, a;
-	// Inicialización de variable
-	contador = 0; a = numero;
-	for (int i = 1; i <= a; i++) {
-		if ((a % i) == 0) contador++;
-	}
-	// Retorno
-	if (contador == 2) return true;
-	else return false;
 }
 
 // Leer opcion
 int leerOpcion() {
-	// variable
+	// Variable
 	int opcion;
-	// Procesor
+	// Proceso
 	do {
 		cout << "Opcion: "; cin >> opcion;
-		if (opcion < 1 or opcion > 5) {
-			cout << "Opcion invalida, elija de nuevo!!\n";
+		if (opcion < 1 or opcion>5) {
+			cout << "Opcion invalida, indique nuevamente el valor\n";
 		}
-	} while (opcion < 1 or opcion > 5);
+	} while (opcion < 1 or opcion>5);
 	// Retorno
 	return opcion;
 }
 
-// Aproximar la exponencial
-void aproximar_exp() {
-	// Limpiando pantalla
+// Limpiar memoria
+void limpiarMemoria() {
+	if (arreglo1 == NULL) return;
+	delete[] arreglo1;
+	delete[] arreglo2;
+	delete[] arreglosuma;
+}
+
+// Generar Arreglos
+void generarArreglos() {
+	// Limpiar pantalla
 	system("cls");
 	// Presentacion
-	cout << "===================================\n";
-	cout << "         APROXIMANDO e^x\n";
-	cout << "e^x = 1 + x + x^2/2! + x^3/3! + ...\n";
-	cout << "===================================\n";
-	// variable
-	int x, N;
-	double sumatoria;
-	stringstream serie;
-	do {
-		cout << "Índique es valor de x: "; cin >> x;
-		if (x < 0 or x > 15) {
-			cout << "x debe estar entre 0 y 15, escoja de nuevo\n";
-		}
-	} while (x < 0 or x > 15);
-	// Proceso
-	do {
-		cout << "Índique el valor de tamaño de la serie: "; cin >> N;
-		if (N < 0) {
-			cout << "El número debe ser un entero positivo, escoja nuevamente!!\n";
-		}
-	} while (N < 0);
-	sumatoria = 1;
-	serie << "e^" << x << " = ";
-	serie << sumatoria;
-	if (N == 1) {
-		cout << "La serie sería: " << serie.str() << sumatoria << "\n";
-		cout << "La sumatoria de la serie sería: " << sumatoria << endl;
+	cout << "--------------------------------\n";
+	cout << "GENERACION DE ARREGLOS\n";
+	cout << "--------------------------------\n";
+	// Definiendo tamamño de arreglo
+	cout << "Indicar el tamaño: "; cin >> tamanio;
+	// Generando arreglo 1
+	limpiarMemoria();
+	arreglo1 = new int[tamanio];
+	for (int i = 0; i < tamanio; i++) {
+		arreglo1[i] = round(rand() % 100);
 	}
-	else {
-		for (int i = 1; i <= N; i++) {
-			sumatoria += (1.0 * potencia(x, i)) / (1.0 * factorial(i));
-			serie << "+ (" << x << "^" << i << "/" << i << "!) ";
-		}
-		cout << "La serie seria: " << serie.str() << "\n";
-		cout << "La sumatoria de la serie sería: " << sumatoria << endl;
+	// Generando arreglo 2
+	arreglo2 = new int[tamanio];
+	for (int i = 0; i < tamanio; i++) {
+		arreglo2[i] = round(rand() % 100);
 	}
 }
 
-// Verificando divisores
-void divisor() {
-	// Limpiando pantalla
+// Mostrar Arreglos
+void mostrarArreglos() {
+	// Validacion
+	if (arreglo1 == NULL) {
+		cout << "Debe generar los elementos\n";
+		return;
+	}
+	// Limpiar pantalla
 	system("cls");
 	// Presentacion
-	cout << "=================================================\n";
-	cout << "    DIVISIBILIDAD DE NUMEROS ENTEROS POSITIVOS\n";
-	cout << "=================================================\n";
-	// Proceso
-	int num1, num2;
-	do {
-		cout << "Índique el primer número: "; cin >> num1;
-		cout << "Índique el segundo número: "; cin >> num2;
-		if (num1 < 0 or num2 < 0) {
-			cout << "Deben ser números enteros positvos, indique nuevamente\n";
-		}
-	} while (num1 < 0 or num2 < 0);
-	if (num1 % num2 == 0) {
-		cout << num2 << " es divisor de " << num1 << endl;
+	cout << "--------------------------------\n";
+	cout << "MOSTRAR ARREGLOS\n";
+	cout << "--------------------------------\n";
+	// Mostrando Arreglo 1
+	cout << "El arreglo 1 es: ";
+	for (int i = 0; i < tamanio; i++) {
+		cout << arreglo1[i] << " ";
 	}
-	else if (num2 % num1 == 0) {
-		cout << num1 << " es divisor de " << num2 << endl;
+	cout << "\n";
+	// Mostrando Arreglo 2
+	cout << "El arreglo 2 es: ";
+	for (int i = 0; i < tamanio; i++) {
+		cout << arreglo2[i] << " ";
 	}
-	else {
-		cout << "Los numeros indicados no son divisibles\n";
-	}
+	cout << "\n";
 }
 
-// Raices de una ecuacion cuadrática
-void raices_ecuacion() {
-	// Limpiando pantalla
+// Mostrar Elementos Comunes
+void mostrarElementosC() {
+	// Validacion
+	if (arreglo1 == NULL) {
+		cout << "Debe generar los elementos\n";
+		return;
+	}
+	// Limpiar pantalla
 	system("cls");
 	// Presentacion
-	cout << "=================================================\n";
-	cout << "    RAICES DE UNA ECUACION CUADRÁTICA\n";
-	cout << "			ax^2 + bx + c = 0\n";
-	cout << "=================================================\n";
-	// variables
-	int a, b, c, disc;
-	pair <float, float> raices;
-	// Proceso
-	cout << "Índique el valor de a: "; cin >> a;
-	cout << "Índique el valor de b: "; cin >> b;
-	cout << "Índique el valor de c: "; cin >> c;
-	disc = pow(b, 2) - (4.0 * a * c);
-	if (disc < 0) {
-		cout << "La ecuacion tiene soluciones imaginarias" << endl;
-	}
-	else if (disc == 0) {
-		cout << "La solucion única es: " << ((-1.0 * b) / (2.0 * a)) << endl;
-	}
-	else {
-		raices.first = ((-1.0 * b) + disc) / (2.0 * a);
-		raices.second = ((-1.0 * b) - disc) / (2.0 * a);
-		cout << "La primera raíz sería: " << raices.first << "\n";
-		cout << "La segunda raíz sería: " << raices.second << "\n";
-	}
-}
-
-// Sumando digitos
-void suma_digitos() {
-	// Limpiando pantalla
-	system("cls");
-	// Presentacion
-	cout << "================================================================\n";
-	cout << "     NUMEROS CON SUMA DE CIFRAS IGUAL A UN NUMERO PRIMO\n";
-	cout << "================================================================\n";
+	cout << "--------------------------------\n";
+	cout << "MOSTRAR ELEMENTOS COMUNES\n";
+	cout << "--------------------------------\n";
 	// Variable
-	int N, sumacf;
-	int* numeros = NULL;
-	// Proceso 1: Creando la lista original de numeros
-	cout << "Índique el valor de N: "; cin >> N;
-	numeros = new int[N];
-	for (int i = 0; i < N; i++) {
-		numeros[i] = 100 + round(rand() % 900);
+	int c;
+	// Generando arreglos internos
+	int* arr1 = NULL;
+	int* arr2 = NULL;
+	arr1 = new int[tamanio];
+	for (int i = 0; i < tamanio; i++) {
+		arr1[i] = arreglo1[i];
 	}
-	cout << "Los números generados fueron: ";
-	for (int i = 0; i < N; i++) {
-		cout << numeros[i] << " ";
+	arr2 = new int[tamanio];
+	for (int i = 0; i < tamanio; i++) {
+		arr2[i] = arreglo2[i];
 	}
-	cout << "\n";
-	// Proceso 2: Lista de suma de cifras prima
-	for (int i = 0; i < N; i++) {
-		sumacf = sumaCifras(numeros[i]);
-		if (!numeroPrimo(sumacf)) {
-			numeros[i] = 0;
+	// Proceso
+	mostrarArreglos();
+	c = 0;
+	for (int i = 0; i < tamanio; i++) {
+		if (arr1[i] == arr2[i]) {
+			c++;
 		}
 	}
-	cout << "La lista de numeros cuya suma de cifras es un numero primo es: ";
-	for (int i = 0; i < N; i++) {
-		if (numeros[i] != 0) {
-			cout << numeros[i] << " ";
+	for (int i = 0; i < tamanio; i++) {
+		for (int j = 0; j < tamanio; j++) {
+			if (i != j and arr1[i] == arr1[j]) {
+				arr1[i] = -1;
+			}
+			if (i != j and arr2[i] == arr2[j]) {
+				arr2[i] = -1;
+			}
 		}
 	}
+	if (c > 0) {
+		cout << "Los elementos comunes son: ";
+		for (int i = 0; i < tamanio; i++) {
+			for (int j = 0; j < tamanio; j++) {
+				if (arr1[i] != -1 and arr1[i] == arr2[j]) {
+					cout << arr1[i] << " ";
+				}
+			}
+		}
+		cout << "\n";
+	}
+	else {
+		cout << "No hay elements comunes\n";
+	}
+	delete[] arr1;
+	delete[] arr2;
+}
+
+// Mostrar Arreglo suma
+void mostrarArregloSuma() {
+	// Validacion
+	if (arreglo1 == NULL) {
+		cout << "Debe generar los elementos\n";
+		return;
+	}
+	// Limpiar pantalla
+	system("cls");
+	// Presentacion
+	cout << "--------------------------------\n";
+	cout << "GENERANDO EL ARREGLO SUMA\n";
+	cout << "--------------------------------\n";
+	// Generando el arreglo suma
+	arreglosuma = new int[tamanio];
+	for (int i = 0; i < tamanio; i++) {
+		arreglosuma[i] = arreglo1[i] + arreglo2[i];
+	}
+	// Mostrando el arreglo suma
+	cout << "El arreglo suma es: ";
+	mostrarArreglos();
+	for (int i = 0; i < tamanio; i++) {
+		cout << arreglosuma[i] << " ";
+	}
 	cout << "\n";
-	delete[] numeros;
 }
 
 // Salir
@@ -241,33 +190,37 @@ void salir() {
 	// Limpiar pantalla
 	system("cls");
 	// Proceso
-	cout << "====================\n";
 	cout << "FIN DEL PROGRAMA\n";
 	cout << "Adiosin" << endl;
 }
 
 // Programa Principal
 int main() {
-	// configuracion
+	// Dando color a la letra del CMD
 	system("color 0B");
+	// Configuracion
 	setlocale(LC_ALL, "Spanish");
 	srand(time(NULL));
-	// variables
+	// Variables del programa
 	int op;
-	// Proceso
+	// Inicializar Variables
+
+	// Control del Menú
 	do {
 		menuPrincipal();
 		op = leerOpcion();
 		switch (op)
 		{
-		case 1: aproximar_exp(); break;
-		case 2: divisor(); break;
-		case 3: raices_ecuacion(); break;
-		case 4: suma_digitos(); break;
+		case 1: generarArreglos(); break;
+		case 2: mostrarArreglos(); break;
+		case 3: mostrarElementosC(); break;
+		case 4: mostrarArregloSuma(); break;
 		case 5: salir(); break;
 		}
 		system("pause");
 	} while (op != 5);
+	// Limpiar memoria
+	limpiarMemoria();
 	// Finalizacion
 	return 0;
 }
