@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include <fstream>
 
 using namespace std;
 
@@ -10,6 +11,35 @@ struct Estudiante{
 	int promedio;
 	string condicion;
 };
+
+Estudiante lineaToEstructura(string datos) {
+	Estudiante objeto;
+	int posicion = 0, nroCampo = 0;
+	string dato;
+	cout << datos << endl;
+	while( datos.size() > 0){
+		posicion = datos.find(",");
+		nroCampo++;
+		if(posicion > 0){
+			dato = datos.substr(0, posicion);
+			datos.erase(0, posicion + 1);
+		} else {
+			dato = datos;
+			datos = "";
+		}
+		cout << dato << "      " << endl;
+		switch (nroCampo) {
+			case 1: objeto.nombre = dato; break;
+			case 2: objeto.nota1 = stoi(dato); break;
+			case 3: objeto.nota2 = stoi(dato); break;
+		}	
+	}
+	return objeto;
+}
+
+void actualizarArchivo(Estudiante lista[]) {
+	
+}
 
 int main(){
 	
@@ -24,27 +54,28 @@ int main(){
 	Estudiante lista[100];
 	int contador;
 	char rpta;
+	ifstream archivo;
+	string texto;
 	
+	// Abrir el archivo en modo lectura
+	archivo.open("Alumnos.txt",ios::in);
+	
+	// Validar
+	if(archivo.fail()){
+		cout << "No se puede abrir el archivo.\n";
+		exit(1);
+	}
 	
 	// Inicializar variables
 	contador = 0;
 	
 	
 	// Leer estudiantes
-	do{
-		
-		cout << endl;
-		cout << "ESTUDIANTE " << (contador + 1) << endl;
-		cout << "=================================" << endl;
-		cout << "Nombre: "; cin >> lista[contador].nombre;
-		cout << "Nota 1: "; cin >> lista[contador].nota1;
-		cout << "Nota 2: "; cin >> lista[contador].nota2;
+	while(!archivo.eof()){
+		getline(archivo,texto);
+		lista[contador]=lineaToEstructura(texto);
 		contador++;
-		
-		cout << endl;
-		cout << "Hay otro estudiante (S/N): "; cin >> rpta; 
-		
-	} while( rpta == 'S' || rpta == 's');
+	}
 	
 	
 	// Proceso
@@ -65,6 +96,9 @@ int main(){
 		cout << lista[i].promedio << "\t";
 		cout << lista[i].condicion << endl;
 	}
+	
+	// Actualizar Archivo
+	actualizarArchivo(lista);
 		
 	return 0;
 }

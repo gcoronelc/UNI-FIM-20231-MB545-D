@@ -1,0 +1,4 @@
+Gustavo  ,15,18
+Juan     ,20,16
+Alejandra,18,19
+Robert   ,16,18
