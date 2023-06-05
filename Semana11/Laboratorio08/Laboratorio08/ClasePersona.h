@@ -6,8 +6,8 @@ private:
 	int edad;
 	string nombre;
 public:
-	Persona();
-	Persona(int, string);
+	Persona(); // Constructor por defecto
+	Persona(int, string); // Constructor adicional
 	void leer();
 	void correr();
 };
