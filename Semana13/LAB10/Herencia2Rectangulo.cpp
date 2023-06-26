@@ -2,7 +2,7 @@
 En este ejemplo se ilustra la sobre-escritura de metodos.
 La clase Cuadrado hereda de la clase Cuadrilatero y sobre-escribe los métodos calcularPerimetro y calculaArea.
 La clase Rectangulo hereda de la clase Cuadrilatero y sobre-escribe los métodos calcularPerimetro y calculaArea.
-La clase TrapecioRectangulo hereda de la clase Cuadrilatero y sobre-escribe los métodos calcularPerimetro y calculaArea.
+La clase TrapecioRectangular hereda de la clase Cuadrilatero y sobre-escribe los métodos calcularPerimetro y calculaArea.
 */
 
 #include <iostream>
@@ -34,17 +34,38 @@ class Cuadrado : public Cuadrilatero{
 		}
 };
 
+class Rectangulo : public Cuadrilatero {
+	private:
+		float base;
+		float altura;
+	public:
+		Rectangulo(float _base, float _altura){
+			base = _base;
+			altura = _altura;
+		}
+		float calcularPerimetro(){
+			return 2*(base+altura);
+		}
+		float calculaArea(){
+			return base * altura;
+		}
+};
+
+
+
+
 int main(){
 	
-	Cuadrado obj1(7);
+	Rectangulo obj1(10,5);
 	cout << "Perimetro: " << obj1.calcularPerimetro() << endl;
 	cout << "Area: " << obj1.calculaArea() << endl;
 	
 	Cuadrilatero* arreglo[5];
-	arreglo[0] = new Cuadrado(6);
+	arreglo[0] = new Rectangulo(8,6);
 	cout << endl;
 	cout << "Perimetro: " << arreglo[0]->calcularPerimetro() << endl;
 	cout << "Area: " << arreglo[0]->calculaArea() << endl;
+	
 	
 	system("pause");
 	return 0;
