@@ -76,6 +76,7 @@ BEGIN_MESSAGE_MAP(CDemoEF01Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CDemoEF01Dlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -164,3 +165,9 @@ HCURSOR CDemoEF01Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CDemoEF01Dlg::OnBnClickedButton1()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+}

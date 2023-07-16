@@ -38,4 +38,5 @@ public:
 	BOOL varFahremheit;
 	BOOL varKelvin;
 	CString varResultado;
+	afx_msg void OnBnClickedButton1();
 };
