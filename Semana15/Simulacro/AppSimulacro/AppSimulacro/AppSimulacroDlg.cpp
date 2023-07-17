@@ -8,6 +8,7 @@
 #include "AppSimulacroDlg.h"
 #include "afxdialogex.h"
 #include "DlgRectangulo.h"
+#include "DlgCuadrante.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -67,6 +68,7 @@ BEGIN_MESSAGE_MAP(CAppSimulacroDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BTN_RECTANGULO, &CAppSimulacroDlg::OnBnClickedBtnRectangulo)
+	ON_BN_CLICKED(IDC_BTN_CUADRANTE, &CAppSimulacroDlg::OnBnClickedBtnCuadrante)
 END_MESSAGE_MAP()
 
 
@@ -160,5 +162,12 @@ HCURSOR CAppSimulacroDlg::OnQueryDragIcon()
 void CAppSimulacroDlg::OnBnClickedBtnRectangulo()
 {
 	DlgRectangulo ventana;
+	ventana.DoModal();
+}
+
+
+void CAppSimulacroDlg::OnBnClickedBtnCuadrante()
+{
+	DlgCuadrante ventana;
 	ventana.DoModal();
 }
